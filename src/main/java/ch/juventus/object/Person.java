@@ -18,6 +18,34 @@ public class Person {
         this.hasPet = hasPet;
     }
 
+    public Person(String lastName, String firstName) {
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.address = null;
+        this.age = 0;
+        this.hasPet = false;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public boolean isHasPet() {
+        return hasPet;
+    }
+
     @Override
     public String toString() {
         return "Person{" +
