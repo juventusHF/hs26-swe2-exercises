@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * Contains three different versions of the same method.
  * The method takes a map and a value.
- * It filters the map so that it only contains entries with the given value.
+ * It filters the map so that it removes entries with the given value.
  */
 public class MapFilter {
 
@@ -19,7 +19,7 @@ public class MapFilter {
 
         Map<K, V> output = new HashMap<>();
         for (Map.Entry<K, V> entry : input.entrySet()) {
-            if (entry.getValue().equals(value)) {
+            if (!entry.getValue().equals(value)) {
                 output.put(entry.getKey(), entry.getValue());
             }
         }
@@ -35,7 +35,7 @@ public class MapFilter {
         Iterator<Map.Entry<K, V>> iterator = output.entrySet().iterator();
         while(iterator.hasNext()) {
             Map.Entry<K, V> entry = iterator.next();
-            if (!entry.getValue().equals(value)) {
+            if (entry.getValue().equals(value)) {
                 iterator.remove();
             }
         }
@@ -49,7 +49,7 @@ public class MapFilter {
         }
 
         Map<K, V> output = new HashMap<>(input);
-        output.entrySet().removeIf(entry -> !entry.getValue().equals(value));
+        output.entrySet().removeIf(entry -> entry.getValue().equals(value));
         return output;
     }
 
