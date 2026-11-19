@@ -1,5 +1,6 @@
 package ch.juventus.object;
 
+import java.time.Month;
 import java.util.Objects;
 
 public class Person {
@@ -9,6 +10,7 @@ public class Person {
     private final Address address;
     private final int age;
     private final boolean hasPet;
+    private final Month favoriteMonth;
 
     public Person(String firstName, String lastName, Address address, int age, boolean hasPet) {
         this.firstName = firstName;
@@ -16,6 +18,7 @@ public class Person {
         this.address = address;
         this.age = age;
         this.hasPet = hasPet;
+        this.favoriteMonth = Month.APRIL;
     }
 
     public Person(String lastName, String firstName) {
@@ -24,6 +27,16 @@ public class Person {
         this.address = null;
         this.age = 0;
         this.hasPet = false;
+        this.favoriteMonth = Month.JULY;
+    }
+
+    public Person(String lastName, String firstName, int age, Month favoriteMonth) {
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.address = null;
+        this.age = age;
+        this.hasPet = false;
+        this.favoriteMonth = favoriteMonth;
     }
 
     public String getFirstName() {
@@ -46,6 +59,10 @@ public class Person {
         return hasPet;
     }
 
+    public Month getFavoriteMonth() {
+        return favoriteMonth;
+    }
+
     @Override
     public String toString() {
         return "Person{" +
@@ -54,6 +71,7 @@ public class Person {
                 ", address=" + address +
                 ", age=" + age +
                 ", hasPet=" + hasPet +
+                ", favoriteMonth=" + favoriteMonth +
                 '}';
     }
 
@@ -61,11 +79,11 @@ public class Person {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person) o;
-        return age == person.age && hasPet == person.hasPet && Objects.equals(firstName, person.firstName) && Objects.equals(lastName, person.lastName) && Objects.equals(address, person.address);
+        return age == person.age && hasPet == person.hasPet && Objects.equals(firstName, person.firstName) && Objects.equals(lastName, person.lastName) && Objects.equals(address, person.address) && favoriteMonth == person.favoriteMonth;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, lastName, address, age, hasPet);
+        return Objects.hash(firstName, lastName, address, age, hasPet, favoriteMonth);
     }
 }
