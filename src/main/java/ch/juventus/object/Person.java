@@ -3,7 +3,7 @@ package ch.juventus.object;
 import java.time.Month;
 import java.util.Objects;
 
-public class Person {
+public class Person implements Comparable<Person> {
 
     private final String firstName;
     private final String lastName;
@@ -61,6 +61,15 @@ public class Person {
 
     public Month getFavoriteMonth() {
         return favoriteMonth;
+    }
+
+    @Override
+    public int compareTo(Person o) {
+        int firstNameCompare = firstName.compareTo(o.firstName);
+        if(firstNameCompare == 0) {
+            return lastName.compareTo(o.lastName);
+        }
+        return firstNameCompare;
     }
 
     @Override
