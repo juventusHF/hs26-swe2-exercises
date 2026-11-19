@@ -3,7 +3,6 @@ package ch.juventus.lambda;
 import ch.juventus.object.Person;
 
 import java.time.Month;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -22,7 +21,7 @@ public class LambdaExamples2 {
 
         List<String> names = employees.stream()
                 .filter(e -> e.getAge() > 30)
-                .map(employee -> employee.getFirstName())
+                .map(Person::getFirstName)
                 .toList();
 
         System.out.println("Employees over 30: " + names);
@@ -30,8 +29,8 @@ public class LambdaExamples2 {
 
         double totalAge = employees.stream()
                 .filter(employee -> employee.getLastName().startsWith("M"))
-                .map(employee -> employee.getAge())
-                .reduce(0, (a, b) -> a + b);
+                .map(Person::getAge)
+                .reduce(0, Integer::sum);
 
         System.out.println("Total age of employees starting with M: " + totalAge);
 
@@ -39,9 +38,9 @@ public class LambdaExamples2 {
         Map<Month, List<String>> employeesByFavoriteMonth =
                 employees.stream()
                         .collect(Collectors.groupingBy(
-                                employee -> employee.getFavoriteMonth(),
+                                Person::getFavoriteMonth,
                                 Collectors.mapping(
-                                        employee -> employee.getFirstName(),
+                                        Person::getFirstName,
                                         Collectors.toList()
                                 )
                         ));
