@@ -1,9 +1,10 @@
 package ch.juventus.object;
 
+import java.io.Serializable;
 import java.time.Month;
 import java.util.Objects;
 
-public class Person implements Comparable<Person> {
+public class Person implements Serializable, Comparable<Person> {
 
     private final String firstName;
     private final String lastName;
